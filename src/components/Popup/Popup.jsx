@@ -5,21 +5,14 @@ export const Popup = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Check if popup has been shown before
-    const hasSeenPopup = localStorage.getItem("hasSeenPopup");
-    
-    if (!hasSeenPopup) {
-      // Show popup after a short delay
-      setTimeout(() => {
-        setIsVisible(true);
-      }, 500);
-    }
+    // Show popup after a short delay on every page load
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 500);
   }, []);
 
   const handleClose = () => {
     setIsVisible(false);
-    // Mark popup as seen in localStorage
-    localStorage.setItem("hasSeenPopup", "true");
   };
 
   if (!isVisible) return null;
@@ -33,7 +26,7 @@ export const Popup = () => {
         <div className="popup-content">
           <div className="popup-thumbnail">
             <img 
-              src="https://via.placeholder.com/400x250/667eea/ffffff?text=New+Portfolio" 
+              src="/assets/images/image.png" 
               alt="New Portfolio Thumbnail" 
             />
           </div>
