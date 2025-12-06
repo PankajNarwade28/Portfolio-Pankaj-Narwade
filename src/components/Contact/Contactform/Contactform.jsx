@@ -15,9 +15,10 @@ export const Contactform = () => {
     setLoading(true);
 
     emailjs
-      .sendForm("service_b2kobwd", "template_6aj4f45", form.current, {
-        publicKey: "PiuldxkokUNi2N_rt",
-      })
+      .sendForm(process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        form.current,
+        { publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY })
       .then(
         () => {
           setLoading(false);
