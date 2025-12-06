@@ -15,19 +15,22 @@ export const Contactform = () => {
     setLoading(true);
 
     emailjs
-      .sendForm(process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      .sendForm(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
         process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         form.current,
-        { publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY })
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      )
       .then(
         () => {
           setLoading(false);
-          toast("Thanks For Contacting us !");
+          toast.success("Thanks For Contacting us!");
           form.current.reset(); // Clear the form
         },
         (error) => {
           setLoading(false);
-          toast("Failed to send. Please try again.");
+          console.error("EmailJS Error:", error);
+          toast.error("Failed to send. Please try again.");
         }
       );
   };
